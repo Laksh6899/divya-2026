@@ -5,16 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Goals for 2026</title>
 
-<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Pacifico&display=swap" rel="stylesheet">
 
 <style>
-/* ===== RESET ===== */
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-/* ===== BODY ===== */
 body {
   margin: 0;
   height: 100vh;
@@ -25,7 +20,6 @@ body {
   font-family: 'Playfair Display', serif;
 }
 
-/* ===== MOBILE REEL WRAPPER ===== */
 .wrapper {
   width: 100%;
   max-width: 420px;
@@ -35,29 +29,21 @@ body {
   align-items: center;
 }
 
-/* ===== CARD ===== */
 .card {
-  background: #ffffff;
+  background: #fff;
   width: 90%;
   max-width: 340px;
   padding: 24px 22px;
   border-radius: 22px;
   box-shadow: 0 20px 45px rgba(0,0,0,0.25);
-  animation: fadeIn 0.8s ease;
+  animation: fadeIn 0.6s ease;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* ===== TITLE ===== */
 .title {
   text-align: center;
 }
@@ -75,16 +61,13 @@ body {
   font-size: 24px;
 }
 
-/* ===== LIST ITEMS ===== */
 .item {
   display: flex;
   align-items: flex-start;
   margin: 16px 0;
   font-size: 15px;
-  line-height: 1.4;
 }
 
-/* ===== CHECKBOX ===== */
 .checkbox {
   min-width: 22px;
   height: 22px;
@@ -100,27 +83,19 @@ body {
 .checkbox.checked {
   background: #c0392b;
   color: #fff;
-  animation: pop 0.25s ease;
 }
 
-@keyframes pop {
-  50% {
-    transform: scale(1.2);
-  }
-}
-
-/* ===== FOOTER ===== */
 .footer {
   margin-top: 22px;
   text-align: center;
-  font-size: 14px;
+  font-size: 15px;
   color: #555;
+  line-height: 1.6;
 }
 
-/* ===== BUTTON ===== */
 button {
   width: 100%;
-  margin-top: 16px;
+  margin-top: 18px;
   padding: 14px;
   border-radius: 30px;
   border: none;
@@ -134,7 +109,6 @@ button:active {
   transform: scale(0.97);
 }
 
-/* ===== MUSIC NOTE ===== */
 .music {
   text-align: center;
   margin-top: 12px;
@@ -148,75 +122,92 @@ button:active {
 
 <div class="wrapper">
 
-  <!-- PAGE 1 -->
-  <div class="card" id="page1">
-    <div class="title">
-      <h1>Goals for 2026</h1>
-      <h2>Bucket List</h2>
-    </div>
-
-    <div class="item">
-      <div class="checkbox"></div>
-      🌍 Visit a place we’ve always wanted to see
-    </div>
-
-    <div class="item">
-      <div class="checkbox"></div>
-      📚 Learn or read more consistently
-    </div>
-
-    <div class="item">
-      <div class="checkbox"></div>
-      🧘 Take better care of mind & body
-    </div>
-
-    <div class="item">
-      <div class="checkbox"></div>
-      ❤️ Spend quality time with <b>Divya</b>
-    </div>
-
-    <div class="footer">
-      Ready to step into 2026?
-    </div>
-
-    <button onclick="nextPage()">LET’S GO →</button>
-
-    <div class="music">🎵 Tap once to play music</div>
+<!-- PAGE 1 -->
+<div class="card" id="p1">
+  <div class="title">
+    <h1>Goals for 2026</h1>
+    <h2>Bucket List</h2>
   </div>
 
-  <!-- PAGE 2 -->
-  <div class="card" id="page2" style="display:none;">
-    <div class="title">
-      <h1>2026</h1>
-      <h2>With You 💖</h2>
-    </div>
+  <div class="item"><div class="checkbox"></div> 🌍 Visit a place we’ve always wanted to see</div>
+  <div class="item"><div class="checkbox"></div> 📚 Learn or read more consistently</div>
+  <div class="item"><div class="checkbox"></div> 🧘 Take better care of mind & body</div>
+  <div class="item"><div class="checkbox"></div> ❤️ Spend quality time with <b>Divya</b></div>
 
-    <div class="footer" style="font-size:16px; line-height:1.6;">
-      New memories.<br>
-      New goals.<br><br>
-      <b>Divya ❤️</b>
-    </div>
+  <div class="footer">Ready to step into 2026?</div>
+  <button onclick="go(1,2)">LET’S GO →</button>
+  <div class="music">🎵 Tap once to play music</div>
+</div>
 
-    <button onclick="restart()">Replay ↺</button>
+<!-- PAGE 2 -->
+<div class="card" id="p2" style="display:none;">
+  <div class="title">
+    <h2>Hey Divya ❤️</h2>
   </div>
+  <div class="footer">
+    If 2026 has one wish,<br>
+    it’s spending every little moment<br>
+    with you by my side.
+  </div>
+  <button onclick="go(2,3)">Next →</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="card" id="p3" style="display:none;">
+  <div class="title">
+    <h2>Us ✨</h2>
+  </div>
+  <div class="footer">
+    Through laughs, silence,<br>
+    late talks and small fights —<br>
+    I still choose <b>you</b>.
+  </div>
+  <button onclick="go(3,4)">Next →</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="card" id="p4" style="display:none;">
+  <div class="title">
+    <h2>Promise 🤍</h2>
+  </div>
+  <div class="footer">
+    I promise to try,<br>
+    to care, to stay,<br>
+    and to grow — together.
+  </div>
+  <button onclick="go(4,5)">Next →</button>
+</div>
+
+<!-- PAGE 5 -->
+<div class="card" id="p5" style="display:none;">
+  <div class="title">
+    <h1>2026</h1>
+    <h2>With You 💖</h2>
+  </div>
+
+  <div class="footer">
+    New memories.<br>
+    New dreams.<br><br>
+    <b>Divya ❤️</b>
+  </div>
+
+  <button onclick="go(5,1)">Replay ↺</button>
+</div>
 
 </div>
 
-<!-- ===== MUSIC ===== -->
+<!-- MUSIC -->
 <audio id="bgMusic" loop>
-  <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Scott_Holmes/Happy_Music/Scott_Holmes_-_04_-_Upbeat_Party.mp3" type="audio/mpeg">
+  <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Scott_Holmes/Happy_Music/Scott_Holmes_-_04_-_Upbeat_Party.mp3">
 </audio>
 
-<!-- ===== SCRIPT ===== -->
 <script>
 const music = document.getElementById("bgMusic");
 
-/* Music starts on first tap (browser rule) */
 document.body.addEventListener("click", () => {
   music.play();
 }, { once: true });
 
-/* Checkbox interaction */
 document.querySelectorAll('.checkbox').forEach(box => {
   box.addEventListener('click', () => {
     box.classList.toggle('checked');
@@ -224,15 +215,9 @@ document.querySelectorAll('.checkbox').forEach(box => {
   });
 });
 
-/* Page navigation */
-function nextPage() {
-  document.getElementById("page1").style.display = "none";
-  document.getElementById("page2").style.display = "block";
-}
-
-function restart() {
-  document.getElementById("page2").style.display = "none";
-  document.getElementById("page1").style.display = "block";
+function go(from, to) {
+  document.getElementById("p" + from).style.display = "none";
+  document.getElementById("p" + to).style.display = "block";
 }
 </script>
 
