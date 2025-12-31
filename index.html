@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,32 +6,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Goals for 2026</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display&display=swap" rel="stylesheet">
 
 <style>
 body {
   margin: 0;
   height: 100vh;
-  background: #efeae4;
+  background: #eee8e1;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: 'Playfair Display', serif;
 }
 
-.card {
-  width: 330px;
-  background: #fff;
-  border-radius: 18px;
-  padding: 22px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-  transition: transform 0.5s ease, opacity 0.5s ease;
+.wrapper {
+  width: 360px;
+  height: 640px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.hidden {
-  transform: translateY(30px);
-  opacity: 0;
-  pointer-events: none;
+.card {
+  background: #fff;
+  width: 90%;
+  padding: 22px;
+  border-radius: 20px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .title {
@@ -45,22 +53,22 @@ body {
 .title h2 {
   font-family: 'Pacifico', cursive;
   color: #c0392b;
-  margin: 4px 0 18px;
-  font-size: 22px;
+  margin: 6px 0 20px;
+  font-size: 24px;
 }
 
 .item {
   display: flex;
   align-items: center;
-  margin: 14px 0;
+  margin: 16px 0;
   font-size: 15px;
 }
 
 .checkbox {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   border: 2px solid #c0392b;
-  border-radius: 4px;
+  border-radius: 5px;
   margin-right: 12px;
   display: flex;
   justify-content: center;
@@ -71,10 +79,15 @@ body {
 .checkbox.checked {
   background: #c0392b;
   color: #fff;
+  animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+  50% { transform: scale(1.2); }
 }
 
 .footer {
-  margin-top: 18px;
+  margin-top: 20px;
   text-align: center;
   font-size: 14px;
   color: #555;
@@ -82,9 +95,9 @@ body {
 
 button {
   width: 100%;
-  margin-top: 14px;
-  padding: 12px;
-  border-radius: 25px;
+  margin-top: 18px;
+  padding: 14px;
+  border-radius: 30px;
   border: none;
   background: #e74c3c;
   color: white;
@@ -92,61 +105,63 @@ button {
   cursor: pointer;
 }
 
-button:active {
-  transform: scale(0.97);
+.music {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 13px;
+  color: #777;
 }
 </style>
 </head>
 
 <body>
 
-<!-- PAGE 1 -->
-<div class="card" id="page1">
-  <div class="title">
-    <h1>Goals for 2026</h1>
-    <h2>Bucket List</h2>
+<div class="wrapper">
+  <div class="card" id="page1">
+    <div class="title">
+      <h1>Goals for 2026</h1>
+      <h2>Bucket List</h2>
+    </div>
+
+    <div class="item"><div class="checkbox"></div> 🌍 Visit a place we’ve always wanted to see</div>
+    <div class="item"><div class="checkbox"></div> 📚 Learn or read more consistently</div>
+    <div class="item"><div class="checkbox"></div> 🧘 Take better care of mind & body</div>
+    <div class="item"><div class="checkbox"></div> ❤️ Spend quality time with Divya</div>
+
+    <div class="footer">Ready to step into 2026?</div>
+    <button onclick="nextPage()">LET’S GO →</button>
+
+    <div class="music">🎵 Tap anywhere to play music</div>
   </div>
 
-  <div class="item">
-    <div class="checkbox"></div> 🌍 Visit a place we’ve always wanted to see
-  </div>
+  <div class="card" id="page2" style="display:none;">
+    <div class="title">
+      <h1>2026</h1>
+      <h2>With You 💖</h2>
+    </div>
 
-  <div class="item">
-    <div class="checkbox"></div> 📚 Learn or read more consistently
-  </div>
+    <div class="footer" style="font-size:16px;">
+      New memories.<br>
+      New goals.<br><br>
+      <b>Divya ❤️</b>
+    </div>
 
-  <div class="item">
-    <div class="checkbox"></div> 🧘 Take better care of mind & body
+    <button onclick="restart()">Replay ↺</button>
   </div>
-
-  <div class="item">
-    <div class="checkbox"></div> ❤️ Spend quality time with Divya
-  </div>
-
-  <div class="footer">
-    Ready to step into 2026?
-  </div>
-
-  <button onclick="nextPage()">LET’S GO →</button>
 </div>
 
-<!-- PAGE 2 -->
-<div class="card hidden" id="page2">
-  <div class="title">
-    <h1>2026</h1>
-    <h2>With You 💖</h2>
-  </div>
-
-  <div class="footer" style="font-size:16px;">
-    Here’s to new memories,<br>
-    new goals, and<br><br>
-    <b>Divya ❤️</b>
-  </div>
-
-  <button onclick="restart()">Replay ↺</button>
-</div>
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Scott_Holmes/Happy_Music/Scott_Holmes_-_04_-_Upbeat_Party.mp3" type="audio/mpeg">
+</audio>
 
 <script>
+const music = document.getElementById("bgMusic");
+
+document.body.addEventListener("click", () => {
+  music.play();
+}, { once: true });
+
 document.querySelectorAll('.checkbox').forEach(box => {
   box.addEventListener('click', () => {
     box.classList.toggle('checked');
@@ -155,17 +170,13 @@ document.querySelectorAll('.checkbox').forEach(box => {
 });
 
 function nextPage() {
-  document.getElementById('page1').classList.add('hidden');
-  setTimeout(() => {
-    document.getElementById('page2').classList.remove('hidden');
-  }, 400);
+  document.getElementById("page1").style.display = "none";
+  document.getElementById("page2").style.display = "block";
 }
 
 function restart() {
-  document.getElementById('page2').classList.add('hidden');
-  setTimeout(() => {
-    document.getElementById('page1').classList.remove('hidden');
-  }, 400);
+  document.getElementById("page2").style.display = "none";
+  document.getElementById("page1").style.display = "block";
 }
 </script>
 
