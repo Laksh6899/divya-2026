@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +31,7 @@ body {
 }
 
 .card {
-  background: #fff;
+  background: #ffffff;
   width: 90%;
   max-width: 340px;
   padding: 24px 22px;
@@ -136,7 +137,7 @@ button:active {
 
   <div class="footer">Ready to step into 2026?</div>
   <button onclick="go(1,2)">LET’S GO →</button>
-  <div class="music">🎵 Tap once to play music</div>
+  <div class="music">🎵 Tap once to start romantic music</div>
 </div>
 
 <!-- PAGE 2 -->
@@ -196,18 +197,34 @@ button:active {
 
 </div>
 
-<!-- MUSIC -->
-<audio id="bgMusic" loop>
-  <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Scott_Holmes/Happy_Music/Scott_Holmes_-_04_-_Upbeat_Party.mp3">
-</audio>
-
 <script>
-const music = document.getElementById("bgMusic");
+/* ===== ROMANTIC BACKGROUND SOUND (OPTION 2) ===== */
+let musicStarted = false;
 
 document.body.addEventListener("click", () => {
-  music.play();
+  if (musicStarted) return;
+  musicStarted = true;
+
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+
+  osc.type = "sine";          // soft romantic tone
+  osc.frequency.value = 220;  // warm pitch
+  gain.gain.value = 0.04;     // gentle volume
+
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+  osc.start();
+
+  // smooth fade
+  gain.gain.exponentialRampToValueAtTime(
+    0.0001,
+    ctx.currentTime + 8
+  );
 }, { once: true });
 
+/* Checkbox */
 document.querySelectorAll('.checkbox').forEach(box => {
   box.addEventListener('click', () => {
     box.classList.toggle('checked');
@@ -215,6 +232,7 @@ document.querySelectorAll('.checkbox').forEach(box => {
   });
 });
 
+/* Page navigation */
 function go(from, to) {
   document.getElementById("p" + from).style.display = "none";
   document.getElementById("p" + to).style.display = "block";
